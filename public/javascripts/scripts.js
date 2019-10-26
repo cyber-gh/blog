@@ -87,7 +87,6 @@ function populateArticles(data) {
 
 window.addEventListener("load", function () {
     setupNavBarListeners();
-    setupListeners();
 });
 
 function addNewArticle(title, date, text) {
@@ -101,7 +100,7 @@ function addNewArticle(title, date, text) {
 
 
     document.getElementById("articles-container").appendChild(articleClone);
-    setupListeners();
+    //setupListeners();
 }
 
 getArticlesAsync();
