@@ -4,11 +4,38 @@ function isDeleteButton(btn) {
 
 let listenerByIndex = function(index) {
     return function curried_func() {
-        let toBeDeleted = document.getElementsByTagName("article")[index];
-        toBeDeleted.parentNode.removeChild(toBeDeleted);
-        setupListeners();
+        removeArticle(index);
     }
 };
+
+function removeArticleFromDOM(index) {
+    let toBeDeleted = document.getElementsByTagName("article")[index];
+    toBeDeleted.parentNode.removeChild(toBeDeleted);
+    setupListeners();
+}
+
+function removeArticle(id) {
+    var deleteArticleEndpoint = "http://localhost:3000/api/v1/articles/delete";
+
+    var xhhtp =  new XMLHttpRequest();
+    var identifier = currentArticles[id].id;
+    xhhtp.onreadystatechange= function () {
+        if (this.readyState == 4) {
+            removeArticleFromDOM(id);
+        }
+    };
+
+
+    xhhtp.open("POST", deleteArticleEndpoint);
+
+    xhhtp.setRequestHeader("Content-Type", "application/json");
+    xhhtp.send(JSON.stringify({
+        id: identifier
+    }));
+
+
+
+}
 
 function setupNavBarListeners() {
     let refresBtn = document.getElementById("refresh-articles");
@@ -45,8 +72,9 @@ function getArticlesAsync() {
     xhhtp.open("GET", articlesEndpoint);
     xhhtp.send();
 }
-
+var currentArticles = [];
 function populateArticles(data) {
+    currentArticles = data;
     document.getElementById("articles-container").innerHTML = '';
 
     for (var i = 0; i < data.length; i++) {

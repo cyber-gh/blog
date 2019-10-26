@@ -36,4 +36,19 @@ router.post('/api/v1/articles', (req, res) => {
    })
 });
 
+router.post('/api/v1/articles/delete', (req, res) =>  {
+    let id = req.body.id;
+
+    articles = articles.filter(function (item) {
+        return item.id != id;
+    });
+
+    return res.status(201).send( {
+        success: 'true',
+        message: 'article deleted',
+        id
+    })
+
+});
+
 module.exports = router;
