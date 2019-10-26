@@ -58,7 +58,11 @@ function setupListeners() {
 
     for ( i = 0; i < btns.length; i++ ) {
         if (btns[i].className === "delete-article") {
-            btns[i].addEventListener("click", listenerByIndex(i));
+            btns[i].onclick = null;
+            if (btns[i].getAttribute('listener') !== 'true') {
+                btns[i].setAttribute('listener', 'true');
+                btns[i].addEventListener("click", listenerByIndex(i));
+            }
         }
     }
 }
