@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add article</title>
+</head>
+<body>
+
+    <form>
+
+        <div class="input-item">
+
+            <p>Your email</p>
+            <input type="email" id="email">
+        </div>
+
+        <div class="input-item">
+
+            <p>Title</p>
+            <input type="text" id="title">
+        </div>
+
+
+        <div class="input-item">
+
+             <p>Content</p>
+            <textarea id="content">
+            </textarea>
+        </div>
+
+
+        <div class="input-item">
+
+            <p>Publish now</p>
+            <input type="checkbox" id="shouldPublish">
+        </div>
+
+        <div class="input-item">
+            <button id="done" onclick="submitArticle()">Done</button>
+        </div>
+
+
+
+    </form>
+
+
+<script src="../javascripts/add_article.js"></script>
+</body>
+</html>
