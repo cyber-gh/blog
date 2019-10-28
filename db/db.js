@@ -1,6 +1,9 @@
 const articles = [
     {
         id: 1,
+        first_name:"Soltan",
+        last_name:"Gheorghe",
+        email: "test@test.com",
         title: "Why CSS rocks",
         date: "1 Augut 2019",
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque\n" +
@@ -23,6 +26,9 @@ const articles = [
     },
     {
         id: 2,
+        first_name:"Soltan",
+        last_name:"Gheorghe",
+        email: "test@test.com",
         title: "Why CSS rocks",
         date: "1 Augut 2019",
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque\n" +
@@ -45,6 +51,9 @@ const articles = [
     },
     {
         id: 3,
+        first_name:"Soltan",
+        last_name:"Gheorghe",
+        email: "test@test.com",
         title: "Why CSS rocks",
         date: "1 Augut 2019",
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque\n" +
@@ -68,3 +77,15 @@ const articles = [
 ];
 
 module.exports =  articles;
+
+//article model
+/*
+    id
+    first_name
+    last_name
+    email
+    title
+    date
+    text
+
+ */

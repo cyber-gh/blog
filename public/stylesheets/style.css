@@ -77,8 +77,38 @@ h1 {
 .article-text {
     text-align: justify;
     text-indent: 20px;
+
+    font-family:  'Cookie', Helvetica, sans-serif;
+    font-size: 1.3em;
+    /*text-shadow: 4px 4px 3px rgba(0,0,0,0.1);*/
 }
 
 .article-minimal-template {
     display: none;
+}
+
+.article-header-container {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    flex-basis: 40% 60%;
+
+}
+
+.delete-article{
+    border-radius: 50%;
+    border-color: red;
+    color: white;
+    background-color: red;
+    margin-left: auto;
+    height: 30px;
+    width: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 99%;
+        grid-gap: 1%;
+    }
 }

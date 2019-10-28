@@ -21,8 +21,20 @@ router.get('/api/v1/articles', function(req, res, next) {
 router.post('/api/v1/articles', (req, res) => {
 
 
+    if (
+        !(req.body.first_name && req.body.last_name && req.body.email && req.body.email && req.body.email && req.body.date && req.body.text)
+    ) {
+        return res.status(203).send({
+            success: 'false',
+            message: "Invalid article data"
+        })
+    }
+
    const article = {
        id: articles.length + 1,
+       first_name: req.body.first_name,
+       last_name: req.body.last_name,
+       email: req.body.email,
        title: req.body.title,
        date: req.body.date,
        text: req.body.text
