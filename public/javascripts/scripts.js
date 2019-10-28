@@ -2,7 +2,7 @@ let PORT = 3000;
 let serverIP = `localhost:${PORT}`;
 var deleteArticleEndpoint = `http://${serverIP}/api/v1/articles/delete`;
 let articlesEndpoint = `http://${serverIP}/api/v1/articles`;
-
+var currentArticles = [];
 function isDeleteButton(btn) {
     return btn.className === "delete-article";
 }
@@ -44,10 +44,10 @@ function removeArticle(id) {
 
 function setupNavBarListeners() {
     let refresBtn = document.getElementById("refresh-articles");
-    refresBtn.addEventListener("click",
-        function () {
-            getArticlesAsync();
-        });
+    // refresBtn.addEventListener("click",
+    //     function () {
+    //         getArticlesAsync();
+    //     });
 
 }
 
@@ -57,7 +57,7 @@ function setupListeners() {
         .filter(isDeleteButton);
 
 
-    for ( i = 0; i < btns.length; i++ ) {
+    for ( var i = 0; i < btns.length; i++ ) {
         if (btns[i].className === "delete-article") {
             btns[i].onclick = null;
             if (btns[i].getAttribute('listener') !== 'true') {
@@ -81,7 +81,7 @@ function getArticlesAsync() {
     xhhtp.open("GET", articlesEndpoint);
     xhhtp.send();
 }
-var currentArticles = [];
+
 function populateArticles(data) {
     currentArticles = data;
     document.getElementById("articles-container").innerHTML = '';
@@ -89,7 +89,7 @@ function populateArticles(data) {
     for (var i = 0; i < data.length; i++) {
         const el = data[i];
         console.log(el);
-        addNewArticle(el.title, el.date, el.text);
+        addNewArticle(el.title, el.date, el.text, el.id);
     }
     setupListeners();
 }
@@ -98,7 +98,7 @@ window.addEventListener("load", function () {
     setupNavBarListeners();
 });
 
-function addNewArticle(title, date, text) {
+function addNewArticle(title, date, text, id) {
     var tmp = document.getElementsByTagName("template")[0];
     var articleClone = tmp.content.cloneNode(true);
 
@@ -109,6 +109,10 @@ function addNewArticle(title, date, text) {
 
 
     document.getElementById("articles-container").appendChild(articleClone);
+    // articleClone.querySelector("button.delete-article").setAttribute("article-id", id);
+    // articleClone.querySelector(".delete-article").addEventListener("click", function () {
+    //     alert(this.getAttribute("article-id"));
+    // })
     //setupListeners();
 }
 
