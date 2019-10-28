@@ -1,3 +1,7 @@
+let serverIP = "localhost:8081";
+var deleteArticleEndpoint = `http://${serverIP}/api/v1/articles/delete`;
+let articlesEndpoint = `http://${serverIP}/api/v1/articles`;
+
 function isDeleteButton(btn) {
     return btn.className === "delete-article";
 }
@@ -15,7 +19,7 @@ function removeArticleFromDOM(index) {
 }
 
 function removeArticle(id) {
-    var deleteArticleEndpoint = "http://localhost:3000/api/v1/articles/delete";
+    
 
     var xhhtp =  new XMLHttpRequest();
     var identifier = currentArticles[id].id;
@@ -59,7 +63,7 @@ function setupListeners() {
     }
 }
 
-let articlesEndpoint = "http://localhost:3000/api/v1/articles";
+
 
 function getArticlesAsync() {
     var xhhtp = new XMLHttpRequest();

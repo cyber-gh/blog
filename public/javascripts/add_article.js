@@ -13,10 +13,10 @@ function validateForm() {
    return [artTitle, artEmail, artContent, shouldPublishNow.checked]
 }
 
-let addArticleEndpoint = "http://localhost:3000/api/v1/articles";
+let addArticleEndpoint = "http://localhost:8081/api/v1/articles";
 
 function submitArticle() {
-
+    console.log("submit article called");
     let article = validateForm();
     if ( article.length > 0 ) {
         var xhhtp = new XMLHttpRequest()

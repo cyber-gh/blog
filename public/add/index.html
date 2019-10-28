@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Add article</title>
-</head>
-<body>
+    <link rel="stylesheet" href="../stylesheets/add-article.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
 
-    <form>
+</head>
+<body class="main_body">
+
+    <!-- <form>
 
         <div class="input-item">
 
@@ -24,8 +27,7 @@
         <div class="input-item">
 
              <p>Content</p>
-            <textarea id="content">
-            </textarea>
+            <textarea id="content"></textarea>
         </div>
 
 
@@ -41,7 +43,42 @@
 
 
 
-    </form>
+    </form> -->
+    <div class="form-container">
+        <form>
+            <h1>New Article</h1>
+            
+                <div class="name-container">
+                    <div>
+                        <label >Your name</label>
+                    </div>
+                    
+                    <div class="margin-top-10 name-input-container">
+                        <input type="text" placeholder="First">
+                        <input type="text" placeholder="Last">
+                    </div>
+                </div>
+
+                <div class="name-container margin-top-10">
+                        <label>Email</label>
+                        <input class="margin-top-10" type="email" placeholder="">
+                    </div>
+
+                    <div class="name-container margin-top-10">
+                            <label>Title</label>
+                            <input class="margin-top-10" type="text" placeholder="">
+                        </div>
+
+                        <div class="name-container margin-top-10">
+                                <label>Content</label>
+                                <textarea class="margin-top-10" rows="15" ></textarea>
+                            </div>
+
+                        <div class="buttons margin-top-10">
+                            <button type="button" id="done-button">Submit article</button>
+                        </div>
+        </form>
+    </div>
 
 
 <script src="../javascripts/add_article.js"></script>
