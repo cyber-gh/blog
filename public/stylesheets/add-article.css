@@ -9,7 +9,9 @@ html, body {
     display: flex;
     justify-content: center;
     height: calc(100vh - 50px);
+    
 
+    margin-bottom: 20px;
 }
 
 .name-container {
@@ -24,6 +26,7 @@ html, body {
 }
 
 form {
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -31,11 +34,12 @@ form {
     border: solid 1px #ddd;
     margin-top: 50px;
     box-shadow: 1px 1px 5px #eee;
+    height: calc(100vh - 160px);
 }
 
 input,textarea {
     border: solid 1px #ddd;
-    padding: 5px 10px;
+    padding:  10px;
     border-radius: 5px;
 }
 

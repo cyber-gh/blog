@@ -1,4 +1,4 @@
-let PORT = 3000;
+let PORT = 8081;
 let serverIP = `localhost:${PORT}`;
 function validateForm() {
     let form = document.getElementById("add-article-form");
