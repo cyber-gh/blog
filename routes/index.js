@@ -24,7 +24,7 @@ router.post('/api/v1/articles', (req, res) => {
     if (
         !(req.body.first_name && req.body.last_name && req.body.email && req.body.email && req.body.email && req.body.date && req.body.text)
     ) {
-        return res.status(203).send({
+        return res.status(403).send({
             success: 'false',
             message: "Invalid article data"
         })
