@@ -3,6 +3,7 @@ let serverIP = `localhost:${PORT}`;
 var deleteArticleEndpoint = `http://${serverIP}/api/v1/articles/delete`;
 let articlesEndpoint = `http://${serverIP}/api/v1/articles`;
 var currentArticles = [];
+var currentIndices = []
 function isDeleteButton(btn) {
     return btn.className === "delete-article";
 }
@@ -15,9 +16,18 @@ let listenerByIndex = function(index) {
 };
 
 function removeArticleFromDOM(index) {
-    let toBeDeleted = document.getElementsByTagName("article")[index];
+    console.log("removing article " , index)
+    var offset = 0;
+    for (var i = 0; i < index; i++ ) {
+        if (currentIndices[i] == 0) offset++;
+    }
+    let toBeDeleted = document.getElementsByTagName("article")[index - offset];
     toBeDeleted.parentNode.removeChild(toBeDeleted);
-    setupListeners();
+
+    currentIndices[index] = 0;
+    
+    
+    //setupListeners();
 }
 
 function removeArticle(id) {
@@ -85,6 +95,9 @@ function getArticlesAsync() {
 
 function populateArticles(data) {
     currentArticles = data;
+    currentIndices = currentArticles.map( function(x) {
+        return 1
+    });
     document.getElementById("articles-container").innerHTML = '';
 
     for (var i = 0; i < data.length; i++) {

@@ -4,7 +4,7 @@ const articles = [
         first_name:"Soltan",
         last_name:"Gheorghe",
         email: "test@test.com",
-        title: "Why CSS rocks",
+        title: "Why CSS rocks 1",
         date: "1 Augut 2019",
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque\n" +
             "                          laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto\n" +
@@ -29,7 +29,7 @@ const articles = [
         first_name:"Soltan",
         last_name:"Gheorghe",
         email: "test@test.com",
-        title: "Why CSS rocks",
+        title: "Why CSS rocks 2",
         date: "1 Augut 2019",
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque\n" +
             "                          laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto\n" +
@@ -54,7 +54,7 @@ const articles = [
         first_name:"Soltan",
         last_name:"Gheorghe",
         email: "test@test.com",
-        title: "Why CSS rocks",
+        title: "Why CSS rocks 3",
         date: "1 Augut 2019",
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque\n" +
             "                          laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto\n" +
@@ -79,7 +79,7 @@ const articles = [
         first_name:"Soltan",
         last_name:"Gheorghe",
         email: "test@test.com",
-        title: "Why CSS rocks",
+        title: "Why CSS rocks 4",
         date: "1 Augut 2019",
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque\n" +
             "                          laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto\n" +

@@ -8,7 +8,6 @@ var bodyParse = require('body-parser');
 
 router.get('/api/v1/articles', function(req, res, next) {
     var title = "Express";
-    console.log("-------------- test --------------");
     res.status(200).send({
         success: 'true',
         message: 'this works',
