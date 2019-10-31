@@ -102,7 +102,7 @@ h1 {
     justify-content: flex-start;
     align-content: center;
     align-items: center;
-    flex-basis: 40% 60%;
+
 
 }
 
@@ -138,6 +138,11 @@ h1 {
         margin-top: 20px;
         margin-bottom: 20px;
         font-size: 2.3em;
+    }
+
+    .page-name-container h3 {
+        margin-top: -10px;
+        font-size: 1em;
     }
 }
 

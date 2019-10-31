@@ -1,4 +1,4 @@
-let PORT = 8081;
+let PORT = 3000;
 let serverIP = `localhost:${PORT}`;
 var deleteArticleEndpoint = `http://${serverIP}/api/v1/articles/delete`;
 let articlesEndpoint = `http://${serverIP}/api/v1/articles`;

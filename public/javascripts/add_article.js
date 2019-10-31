@@ -1,4 +1,4 @@
-let PORT = 8081;
+let PORT = 3000;
 let serverIP = `localhost:${PORT}`;
 let getSingleArticleEndpoint = `http://${serverIP}/api/v1/article`;
 let modifyARticleEndpoint = `http://${serverIP}/api/v1/article/modify`
@@ -57,15 +57,27 @@ function modifyArticle(article) {
     };
 
     xhhtp.open("POST", modifyARticleEndpoint);
-    let articleJson = getArticleJSON(article);
-    articleJson.id = article_id;
+
     xhhtp.setRequestHeader("Content-Type", "application/json");
-    xhhtp.send(getArticleJSON(articleJson));
+    xhhtp.send(getArticleJSONWithId(article));
 }
 
 function getArticleJSON(arr) {
     var currentTIme = new Date().toDateString();
     return JSON.stringify( {
+        first_name: arr[0],
+        last_name: arr[1],
+        email: arr[2],
+        title: arr[3],
+        date: currentTIme,
+        text: arr[4]
+    })
+}
+
+function getArticleJSONWithId(arr) {
+    var currentTIme = new Date().toDateString();
+    return JSON.stringify( {
+        id: article_id,
         first_name: arr[0],
         last_name: arr[1],
         email: arr[2],
