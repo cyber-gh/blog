@@ -10,7 +10,8 @@ function isDeleteButton(btn) {
 
 let listenerByIndex = function(index) {
     
-    return function curried_func() {
+    return function curried_func(e) {
+        e.stopPropagation();
         removeArticle(index);
     }
 };
@@ -67,7 +68,7 @@ function setupListeners() {
     var btns = Array.from( document.getElementsByTagName("button"))
         .filter(isDeleteButton);
 
-
+    //delete listeners
     for ( var i = 0; i < btns.length; i++ ) {
         if (btns[i].className === "delete-article") {
             btns[i].onclick = null;
@@ -77,6 +78,8 @@ function setupListeners() {
             }
         }
     }
+
+
 }
 
 
@@ -103,7 +106,7 @@ function populateArticles(data) {
     for (var i = 0; i < data.length; i++) {
         const el = data[i];
         console.log(el);
-        addNewArticle(el.title, el.date, el.text, el.id);
+        addNewArticle(el.title, el.date, el.text, el.id, i);
     }
     setupListeners();
 }
@@ -112,7 +115,7 @@ window.addEventListener("load", function () {
     setupNavBarListeners();
 });
 
-function addNewArticle(title, date, text, id) {
+function addNewArticle(title, date, text, id, index) {
     var tmp = document.getElementsByTagName("template")[0];
     var articleClone = tmp.content.cloneNode(true);
 
@@ -122,12 +125,33 @@ function addNewArticle(title, date, text, id) {
     articleClone.querySelector("p.article-text").textContent = text;
 
 
+
+    //set up listener
+    // setupModifyListener(articleClone, id);
+
     document.getElementById("articles-container").appendChild(articleClone);
+    var arr = Array.from(document.getElementsByClassName("article-minimal"))
+
+    arr[arr.length - 1].addEventListener("click", function () {
+        window.location.href = "add/?id=" + id.toString()
+    })
+
     // articleClone.querySelector("button.delete-article").setAttribute("article-id", id);
     // articleClone.querySelector(".delete-article").addEventListener("click", function () {
     //     alert(this.getAttribute("article-id"));
     // })
     //setupListeners();
+}
+
+function setupModifyListener(article, id) {
+    console.log("adding listener");
+    article.addEventListener("click", function() {
+
+        return function () {
+            console.log("called here");
+            window.location.href = "add/?id=" + id.toString()
+        }
+    });
 }
 
 getArticlesAsync();
