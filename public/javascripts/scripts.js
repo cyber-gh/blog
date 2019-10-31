@@ -20,7 +20,7 @@ function removeArticleFromDOM(index) {
     var offset = 0;
     for (var i = 0; i < index; i++ ) {
         if (currentIndices[i] == 0) offset++;
-    }
+    }//count how many where deleted before this one to adjust the index
     let toBeDeleted = document.getElementsByTagName("article")[index - offset];
     toBeDeleted.parentNode.removeChild(toBeDeleted);
 

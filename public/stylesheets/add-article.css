@@ -41,6 +41,15 @@ input,textarea {
     border: solid 1px #ddd;
     padding:  10px;
     border-radius: 5px;
+    font-size: large;
+    color: #555;
+    
+}
+
+textarea {
+    text-indent: 5%;
+    font-size: medium;
+    line-height: 1.4em;
 }
 
 label {
