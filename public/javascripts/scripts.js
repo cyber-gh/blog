@@ -3,7 +3,7 @@ let serverIP = `localhost:${PORT}`;
 var deleteArticleEndpoint = `http://${serverIP}/api/v1/articles/delete`;
 let articlesEndpoint = `http://${serverIP}/api/v1/articles`;
 var currentArticles = [];
-var currentIndices = []
+var currentIndices = [];
 function isDeleteButton(btn) {
     return btn.className === "delete-article";
 }
