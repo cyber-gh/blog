@@ -1,4 +1,48 @@
-const articles = [
+class Database {
+
+    constructor() {
+        //TOOD
+    }
+
+    getAllArticles() {
+        return articles;
+    }
+
+    findArticleById(id) {
+        return articles.find ( x =>
+            x.id == id
+        );
+    }
+
+    replaceArticle(article) {
+        var foundIt = false;
+        for (var i = 0; i < articles.length; i++) {
+            if (articles[i].id == article.id) {
+                foundIt = true;
+                articles[i] = article
+            }
+        }
+
+        return foundIt;
+    }
+
+    addArticle(article) {
+        articles.push(article);
+    }
+
+    deleteArticle(id) {
+        articles = articles.filter( function (item) {
+            return item.id != id
+        })
+    }
+
+
+}
+
+
+
+
+let articles = [
     {
         id: 1,
         first_name:"Soltan",
@@ -47,7 +91,10 @@ const articles = [
     }
 ];
 
-module.exports =  articles;
+module.exports =  {
+    articles,
+    Database
+};
 
 //article model
 /*

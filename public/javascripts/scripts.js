@@ -4,11 +4,12 @@ var deleteArticleEndpoint = `http://${serverIP}/api/v1/articles/delete`;
 let articlesEndpoint = `http://${serverIP}/api/v1/articles`;
 var currentArticles = [];
 var currentIndices = [];
+
 function isDeleteButton(btn) {
     return btn.className === "delete-article";
 }
 
-let listenerByIndex = function(index) {
+let removeArticleWithParam = function(index) {
     
     return function curried_func(e) {
         e.stopPropagation();
@@ -54,15 +55,6 @@ function removeArticle(id) {
 
 }
 
-function setupNavBarListeners() {
-    let refresBtn = document.getElementById("refresh-articles");
-    // refresBtn.addEventListener("click",
-    //     function () {
-    //         getArticlesAsync();
-    //     });
-
-}
-
 function setupListeners() {
 
     var btns = Array.from( document.getElementsByTagName("button"))
@@ -74,7 +66,7 @@ function setupListeners() {
             btns[i].onclick = null;
             if (btns[i].getAttribute('listener') !== 'true') {
                 btns[i].setAttribute('listener', 'true');
-                btns[i].addEventListener("click", listenerByIndex(i));
+                btns[i].addEventListener("click", removeArticleWithParam(i));
             }
         }
     }
@@ -85,9 +77,9 @@ function setupListeners() {
 
 
 function getArticlesAsync() {
-    var xhhtp = new XMLHttpRequest();
+    let xhhtp = new XMLHttpRequest();
     xhhtp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             populateArticles(JSON.parse( this.responseText)["articles"] );
 
         }
@@ -124,11 +116,6 @@ function addNewArticle(title, date, text, id, index) {
     articleClone.querySelector("div.article-date").textContent = date;
     articleClone.querySelector("p.article-text").textContent = text;
 
-
-
-    //set up listener
-    // setupModifyListener(articleClone, id);
-
     document.getElementById("articles-container").appendChild(articleClone);
     var arr = Array.from(document.getElementsByClassName("article-minimal"))
 
@@ -136,22 +123,7 @@ function addNewArticle(title, date, text, id, index) {
         window.location.href = "add/?id=" + id.toString()
     })
 
-    // articleClone.querySelector("button.delete-article").setAttribute("article-id", id);
-    // articleClone.querySelector(".delete-article").addEventListener("click", function () {
-    //     alert(this.getAttribute("article-id"));
-    // })
-    //setupListeners();
 }
 
-function setupModifyListener(article, id) {
-    console.log("adding listener");
-    article.addEventListener("click", function() {
-
-        return function () {
-            console.log("called here");
-            window.location.href = "add/?id=" + id.toString()
-        }
-    });
-}
 
 getArticlesAsync();

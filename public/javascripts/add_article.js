@@ -1,9 +1,11 @@
 let PORT = 3000;
 let serverIP = `localhost:${PORT}`;
 let getSingleArticleEndpoint = `http://${serverIP}/api/v1/article`;
-let modifyARticleEndpoint = `http://${serverIP}/api/v1/article/modify`
+let modifyARticleEndpoint = `http://${serverIP}/api/v1/article/modify`;
+let addArticleEndpoint = `http://${serverIP}/api/v1/articles`;
 var form_mode = "add";
 var article_id = undefined;
+
 function validateForm() {
     let form = document.getElementById("add-article-form");
     console.log(form.checkValidity());
@@ -22,7 +24,7 @@ function validateForm() {
    return [firstName, secondName, artEmail, artTitle, artContent]
 }
 
-let addArticleEndpoint = `http://${serverIP}/api/v1/articles`;
+
 
 function uploadNewARticle(article) {
     let xhhtp = new XMLHttpRequest();
@@ -100,7 +102,7 @@ function checkState() {
 }
 
 function populateForm(article) {    
-    console.log(article)
+
    document.getElementById("first-name").value = article.first_name;
    document.getElementById("last-name").value = article.last_name;
    document.getElementById("title").value = article.title;
@@ -117,7 +119,7 @@ function initEditForm() {
         if (this.readyState == 4 && this.status == 200) {
             populateForm(JSON.parse( this.responseText)["article"]);
         }
-    }
+    };
     xhhtp.open("GET", getSingleArticleEndpoint + `?id=${article_id}`);
     xhhtp.setRequestHeader("Content-Type", "application/json");
     xhhtp.send();
@@ -126,5 +128,5 @@ function initEditForm() {
     
 }
 
-checkState()
+checkState();
 

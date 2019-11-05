@@ -1,17 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var articles = require('../db/db');
+var { _, Database} = require('../db/db');
 var bodyParse = require('body-parser');
 
 /* GET home page. */
 
+let db = new Database();
 
 router.get('/api/v1/articles', function(req, res, next) {
+
     var title = "Express";
     res.status(200).send({
         success: 'true',
         message: 'this works',
-        articles: articles
+        articles: db.getAllArticles()
     });
 
 
@@ -22,9 +24,7 @@ router.get("/api/v1/article", function(req, res, next) {
     var id = req.query.id
     console.log("request article with id = ", id)
 
-    let rs = articles.find( x => 
-        x.id == id
-        );
+    let rs = db.findArticleById(id);
 
     console.log(rs)    
     if (!rs) {
@@ -42,17 +42,20 @@ router.get("/api/v1/article", function(req, res, next) {
 })
 
 router.post("/api/v1/article/modify", function(req, res, next)  {
-    if (
-        !(req.body.id && req.body.first_name && req.body.last_name && req.body.email && req.body.email && req.body.email && req.body.date && req.body.text)
-    ) {
+    if (!(  req.body.id &&
+            req.body.first_name &&
+            req.body.last_name &&
+            req.body.email &&
+            req.body.email &&
+            req.body.email &&
+            req.body.date &&
+            req.body.text)) {
         console.log(req.body);
         return res.status(403).send({
             success: 'false',
             message: "Invalid article data"
         })
     } else {
-
-
         const article = {
             id: req.body.id,
             first_name: req.body.first_name,
@@ -62,17 +65,18 @@ router.post("/api/v1/article/modify", function(req, res, next)  {
             date: req.body.date,
             text: req.body.text
         };
-        var foundIt = false
-        for (var i = 0; i < articles.length; i++) {
-            if (articles[i].id == article.id) {
-                foundIt = true;
-                articles[i] = article
-            }
-        } //treat if not found 
-        return res.status(200).send({
-            success: 'truee',
-            message: "modfiied sucessfully"
-        })
+        var didReplace = db.replaceArticle(article);
+        if (didReplace === false) {
+            res.status(404).send({
+                success: 'false',
+                message: 'something went wrong'
+            })
+        } else {
+            return res.status(200).send({
+                success: 'true',
+                message: "modfiied sucessfully"
+            })
+        }
     }
 })
 
@@ -80,9 +84,13 @@ router.post("/api/v1/article/modify", function(req, res, next)  {
 router.post('/api/v1/articles', (req, res) => {
 
 
-    if (
-        !(req.body.first_name && req.body.last_name && req.body.email && req.body.email && req.body.email && req.body.date && req.body.text)
-    ) {
+    if (!(  req.body.first_name &&
+            req.body.last_name &&
+            req.body.email &&
+            req.body.email &&
+            req.body.email &&
+            req.body.date &&
+            req.body.text)) {
         res.status(403).send({
             success: 'false',
             message: "Invalid article data"
@@ -100,8 +108,8 @@ router.post('/api/v1/articles', (req, res) => {
             date: req.body.date,
             text: req.body.text
         };
-        articles.push(article);
-
+        // articles.push(article);
+        db.addArticle(article);
         return res.status(201).send({
             success: 'true',
             message: 'article added successfully',
@@ -113,9 +121,11 @@ router.post('/api/v1/articles', (req, res) => {
 router.post('/api/v1/articles/delete', (req, res) =>  {
     let id = req.body.id;
 
-    articles = articles.filter(function (item) {
-        return item.id != id;
-    });
+    // articles = articles.filter(function (item) {
+    //     return item.id != id;
+    // });
+
+    db.deleteArticle(id);
 
     return res.status(201).send( {
         success: 'true',
