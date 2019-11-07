@@ -1,7 +1,7 @@
 let PORT = 3000;
 let serverIP = `localhost:${PORT}`;
-var deleteArticleEndpoint = `http://${serverIP}/api/v1/articles/delete`;
-let articlesEndpoint = `http://${serverIP}/api/v1/articles`;
+var deleteArticleEndpoint = `${window.location.origin}/api/v1/articles/delete`;
+let articlesEndpoint = `${window.location.origin}/api/v1/articles`;
 var currentArticles = [];
 var currentIndices = [];
 
@@ -101,9 +101,6 @@ function populateArticles(data) {
     setupListeners();
 }
 
-window.addEventListener("load", function () {
-    setupNavBarListeners();
-});
 
 function addNewArticle(title, date, text, id, index) {
     var tmp = document.getElementsByTagName("template")[0];

@@ -1,8 +1,8 @@
 let PORT = 3000;
 let serverIP = `localhost:${PORT}`;
-let getSingleArticleEndpoint = `http://${serverIP}/api/v1/article`;
-let modifyARticleEndpoint = `http://${serverIP}/api/v1/article/modify`;
-let addArticleEndpoint = `http://${serverIP}/api/v1/articles`;
+let getSingleArticleEndpoint = `${window.location.origin}/api/v1/article`;
+let modifyARticleEndpoint = `${window.location.origin}/api/v1/article/modify`;
+let addArticleEndpoint = `${window.location.origin}/api/v1/articles`;
 var form_mode = "add";
 var article_id = undefined;
 
