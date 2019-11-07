@@ -81,7 +81,7 @@ router.post("/api/v1/article/modify", function(req, res, next)  {
 })
 
 
-router.post('/api/v1/articles', (req, res) => {
+router.put('/api/v1/articles', (req, res) => {
 
 
     if (!(  req.body.first_name &&
@@ -100,7 +100,7 @@ router.post('/api/v1/articles', (req, res) => {
     
 
         const article = {
-            id: articles.length + 1,
+            id: db.getNr() + 1,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
@@ -118,8 +118,8 @@ router.post('/api/v1/articles', (req, res) => {
     }
 });
 
-router.post('/api/v1/articles/delete', (req, res) =>  {
-    let id = req.body.id;
+router.delete('/api/v1/articles/delete', (req, res) =>  {
+    let id = req.query.id;
 
     // articles = articles.filter(function (item) {
     //     return item.id != id;

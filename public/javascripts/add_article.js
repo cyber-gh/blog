@@ -31,10 +31,11 @@ function uploadNewARticle(article) {
 
     xhhtp.onreadystatechange = function () {
         if (this.readyState === 4)
-            alert("Reqeust done" + this.status)
+            alert("Reqeust done" + this.status);
+            goBack();
     };
 
-    xhhtp.open("POST", addArticleEndpoint);
+    xhhtp.open("PUT", addArticleEndpoint);
 
     xhhtp.setRequestHeader("Content-Type", "application/json");
     xhhtp.send(getArticleJSON(article));
@@ -55,7 +56,8 @@ function modifyArticle(article) {
 
     xhhtp.onreadystatechange = function () {
         if (this.readyState === 4)
-            alert("Reqeust done" + this.status)
+            alert("Reqeust done" + this.status);
+            goBack();
     };
 
     xhhtp.open("POST", modifyARticleEndpoint);
@@ -126,6 +128,10 @@ function initEditForm() {
 
     document.getElementById("done-button").textContent = "Edit article";
     
+}
+
+function goBack() {
+    window.location.href = "/"
 }
 
 checkState();

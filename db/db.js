@@ -36,6 +36,10 @@ class Database {
         })
     }
 
+    getNr() {
+        return articles.length
+    }
+
 
 }
 

@@ -44,12 +44,10 @@ function removeArticle(id) {
     };
 
 
-    xhhtp.open("POST", deleteArticleEndpoint);
+    xhhtp.open("DELETE", deleteArticleEndpoint + "?id=" + identifier);
 
     xhhtp.setRequestHeader("Content-Type", "application/json");
-    xhhtp.send(JSON.stringify({
-        id: identifier
-    }));
+    xhhtp.send();
 
 
 
